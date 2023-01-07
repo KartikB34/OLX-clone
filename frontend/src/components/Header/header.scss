@@ -1,0 +1,34 @@
+nav{
+    z-index: 5000;
+    .hamburger{
+        display: static;
+    }
+
+    .show{
+        visibility: visible;
+    }
+    .hide{
+        visibility: hidden;
+    }
+    .nav_horizontalLinks{
+        display: none;
+    }
+    .signup_btn{
+        background: linear-gradient(95.73deg, #D21ACF 0%, #00EFFF 100%);
+        border-radius: 2px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    nav{
+        .hamburger{
+            display: none;
+        }
+        .nav_horizontalLinks{
+            display: block;
+        }
+        .nav_dropLinks{
+            display: none;
+        }
+    }
+}
