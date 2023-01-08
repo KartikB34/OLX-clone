@@ -55,7 +55,6 @@ const ProductDetails = ({post}) => {
                 <p>Owner: {post.owner.name}</p>
                 <p>Price: ₹{post.price}</p>
                 <p className='my-4'>Description: {post.description}</p>
-                {/* <p className=''>{movie.vote_average}/10{" ("}{movie.vote_count}{" total votes)"}</p> */}
             </div>
         </div>
 
