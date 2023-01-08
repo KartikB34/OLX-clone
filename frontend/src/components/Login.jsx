@@ -25,7 +25,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();                  // to stop reload the page
     dispatch(LoginUser(email,password))
-    navigate("/dashboard")
+    navigate("/dashboard/products")
   };
 
   const handlePassChange = (e) => {
@@ -36,7 +36,7 @@ const Login = () => {
 
     if(isAuthenticated){
       toast.success("Logout first")
-      navigate("/dashboard")
+      navigate("/dashboard/products")
     }
 
     if(error){

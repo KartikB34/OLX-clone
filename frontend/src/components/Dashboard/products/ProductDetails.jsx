@@ -8,12 +8,13 @@ import {ImCross} from "react-icons/im"
 import { useDispatch, useSelector } from 'react-redux';
 import { purchaseRequest } from '../../../Actions/User';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ProductDetails = ({post}) => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const {isAuthenticated}  = useSelector(state=>state.user)
 
   const [state, setState] = useState(0);
@@ -41,7 +42,7 @@ const ProductDetails = ({post}) => {
 
         <div className='flex justify-between hover:cursor-pointer items-center my-3'>
             <p>Item name: {post.title}</p>
-            <img src={close} alt="close" onClick={()=>{navigate('/dashboard/products')}} />
+            <img src={close} alt="close" onClick={()=>{location.pathname===`/products/${post._id}`? navigate(`/products`): navigate('/dashboard/products')}} />
         </div>
 
         <div className='md:flex md:justify-between md:mt-8'>

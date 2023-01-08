@@ -44,7 +44,9 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           {/* <Route path="/postad" element={<Postad />}></Route> */}
-          <Route path="/products" element={<Products />}></Route>
+          <Route path="/products" element={<Products setPost={setPost} />}>
+          <Route path=':id' element={<ProductDetails post={post} />} />
+          </Route>
 
           <Route path="/dashboard" element={isAuthenticated? <Dashboard sidebarOpen={sidebarOpen} /> : <Login/> }>
             <Route path="products" element={<Products setPost={setPost} />} >

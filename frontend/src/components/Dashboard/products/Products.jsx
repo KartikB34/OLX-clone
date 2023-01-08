@@ -36,7 +36,7 @@ const Products = ({setPost}) => {
         {posts && posts.map((post,i)=>(
           <div 
             className='relative shadow-lg rounded-md md:h-[348px] md:w-[282px] m-6 hover:cursor-pointer' 
-            onClick={()=>{navigate(`/dashboard/products/${post._id}`); setPost(post)}}
+            onClick={()=>{location.pathname==="/products"? navigate(`/products/${post._id}`) :navigate(`/dashboard/products/${post._id}`); setPost(post)}}
             key={i}
           >
             <img 
