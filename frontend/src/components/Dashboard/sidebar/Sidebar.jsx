@@ -11,12 +11,15 @@ import { MdOutlineSpaceDashboard, MdLogout, MdInventory } from 'react-icons/md';
 import { loadUser, LogoutUser } from "../../../Actions/User";
 import { useDispatch } from "react-redux";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams} from "react-router-dom";
 
-const Sidebar = ({ option, setOption }) => {
+const Sidebar = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation()
+  const {id} = useParams();
+
 
   const logout = async () => {
     await dispatch(LogoutUser())
@@ -34,15 +37,15 @@ const Sidebar = ({ option, setOption }) => {
 
 
         <div
-          onClick={() => { setOption("Products") }}
-          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${option === "Products" && "border-gray-900"
+          onClick={() => {navigate("/dashboard/products") }}
+          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${ (location.pathname === "/dashboard/products" || location.pathname === `/dashboard/products/${id}`) && "border-gray-900"
             }`}
         >
           <span>
             <MdInventory className="nav-icon" />
           </span>
           <h1
-            className={`${option === "Products"? "text-black font-semibold" : "text-gray-600"} group-hover:text-black xl:flex hidden`}
+            className={`${ (location.pathname === "/dashboard/products" || location.pathname === `/dashboard/products/${id}`) ? "text-black font-semibold" : "text-gray-600"} group-hover:text-black xl:flex hidden`}
           >
             Products
           </h1>
@@ -50,45 +53,45 @@ const Sidebar = ({ option, setOption }) => {
 
 
         <div
-          onClick={() => { setOption("My Posts") }}
-          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${option === "My Posts" && "border-gray-900"
+          onClick={() => {navigate("/dashboard/myposts") }}
+          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${(location.pathname === "/dashboard/myposts" || location.pathname === `/dashboard/myposts/${id}`) && "border-gray-900"
             }`}
         >
           <span>
             <MdOutlineSpaceDashboard className="nav-icon" />
           </span>
           <h1
-            className={`${option === "My Posts"? "text-black font-semibold" : "text-gray-600"} group-hover:text-black xl:flex hidden`}
+            className={`${(location.pathname === "/dashboard/myposts" || location.pathname === `/dashboard/myposts/${id}`)? "text-black font-semibold" : "text-gray-600"} group-hover:text-black xl:flex hidden`}
           >
             My posts
           </h1>
         </div>
 
         <div
-          onClick={() => { setOption("Purchases") }}
-          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${option === "Purchases" && "border-gray-900"
+          onClick={() => { navigate("/dashboard/mypurchases") }}
+          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${location.pathname === "/dashboard/mypurchases" && "border-gray-900"
             }`}
         >
           <span>
             <BiPurchaseTagAlt className="nav-icon" />
           </span>
           <h1
-            className={`${option === "Purchases"? "text-black font-semibold" : "text-gray-600"}  group-hover:text-black xl:flex hidden`}
+            className={`${location.pathname === "/dashboard/mypurchases"? "text-black font-semibold" : "text-gray-600"}  group-hover:text-black xl:flex hidden`}
           >
             My Purchases
           </h1>
         </div>
 
         <div
-          onClick={() => { setOption("Post ad") }}
-          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${option === "Post ad" && "border-gray-900"
+          onClick={() => {navigate("/dashboard/postad") }}
+          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${location.pathname === "/dashboard/postad" && "border-gray-900"
             }`}
         >
           <span>
             <RiAdvertisementLine className="nav-icon" />
           </span>
           <h1
-            className={`${option === "Post ad"? "text-black font-semibold" : "text-gray-600"}  group-hover:text-black xl:flex hidden`}
+            className={`${location.pathname === "/dashboard/postad"? "text-black font-semibold" : "text-gray-600"}  group-hover:text-black xl:flex hidden`}
           >
             Post ad
           </h1>
@@ -98,15 +101,15 @@ const Sidebar = ({ option, setOption }) => {
         <div className="w-full border-t border-gray-200" />
 
         <div
-          onClick={() => { setOption("Profile") }}
-          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${option === "Profile" && "border-gray-900"
+          onClick={() => {navigate("/dashboard/profile") }}
+          className={`w-full flex items-center justify-start space-x-8 px-4 cursor-pointer group hover:border-gray-900 border-l-4 border-transparent ${location.pathname === "/dashboard/profile" && "border-gray-900"
             }`}
         >
           <span>
             <ImProfile className="nav-icon" />
           </span>
           <h1
-            className={`${option === "Profile"? "text-black font-semibold" : "text-gray-600"}   group-hover:text-black xl:flex hidden`}
+            className={`${location.pathname === "/dashboard/profile"? "text-black font-semibold" : "text-gray-600"}   group-hover:text-black xl:flex hidden`}
           >
             Profile
           </h1>

@@ -1,18 +1,18 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {useDispatch, useSelector} from "react-redux"
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { getAllPosts } from '../../../Actions/Post';
 import Loader from '../../Loader';
-import ProductDetails from './ProductDetails';
 
-const Products = () => {
+const Products = ({setPost}) => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const {loading, posts, error} = useSelector(state => state.allpost)
-  const [showModal, setShowModal] = useState(false);
-  const [post, setPost] = useState();
   console.log(posts)
 
   useEffect(()=>{
@@ -36,7 +36,7 @@ const Products = () => {
         {posts && posts.map((post,i)=>(
           <div 
             className='relative shadow-lg rounded-md md:h-[348px] md:w-[282px] m-6 hover:cursor-pointer' 
-            onClick={()=>{setShowModal(true); setPost(post)}}
+            onClick={()=>{navigate(`/dashboard/products/${post._id}`); setPost(post)}}
             key={i}
           >
             <img 
@@ -45,7 +45,7 @@ const Products = () => {
               className='rounded-md h-[348px] w-[282px] object-cover' 
             />
             {/* <p className={`absolute bottom-0 ${showModal? "" : "z-10"} bg-white w-full px-1 text-center py-2 rounded-b-md`}>{movie.title}</p> */}
-            <div className={`absolute bottom-0 ${showModal? "" : "z-10"} bg-white w-full px-3 text-left py-2 rounded-b-md`}>
+            <div className={`absolute bottom-0 ${location.pathname==="/dashboard/products"? "z-10" : ""} bg-white w-full px-3 text-left py-2 rounded-b-md`}>
               <p className='text-lg font-semibold'>₹ {post.price}</p>
               <p>Item name: {post.title}</p>
             </div>
@@ -55,9 +55,7 @@ const Products = () => {
         {posts && posts.length===0 && <p className='flex items-center justify-center text-3xl h-[70vh]'>No posts found..</p>}
 
       </div>
-      {showModal && <ProductDetails setShowModal={setShowModal} post={post} />}
-      {/* {showModal && <MovieDetails setShowModal={setShowModal} movie={Movie} />} */}
-      {/* <ToastContainer /> */}
+      <Outlet />
     </div>
   )
 }

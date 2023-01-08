@@ -17,6 +17,7 @@ exports.isAuthenticated = async (req,res,next) => {
         //Now we are giving token and JWT_SECRET to encode the given user_.id    
         const decoded = await jwt.verify(token, process.env.JWT_SECRET);
 
+        //From here we are defining req.user
         req.user = await User.findById(decoded._id);
 
         next();

@@ -8,10 +8,12 @@ import {ImCross} from "react-icons/im"
 import { useDispatch, useSelector } from 'react-redux';
 import { purchaseRequest } from '../../../Actions/User';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-const ProductDetails = ({post, setShowModal}) => {
+const ProductDetails = ({post}) => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const {isAuthenticated}  = useSelector(state=>state.user)
 
   const [state, setState] = useState(0);
@@ -28,11 +30,10 @@ const ProductDetails = ({post, setShowModal}) => {
 
     if(message){
       toast.success(message)
-      setShowModal(false)
       dispatch({type:"clearMessage"})
     }
 
-  },[post.sold, message, dispatch, setShowModal])
+  },[post.sold, message, dispatch])
  
   return (
     <div className='fixed inset-0 bg-opacity-30 backdrop-blur-sm bg-gray-800 flex justify-center items-center'>
@@ -40,14 +41,13 @@ const ProductDetails = ({post, setShowModal}) => {
 
         <div className='flex justify-between hover:cursor-pointer items-center my-3'>
             <p>Item name: {post.title}</p>
-            <img src={close} alt="close" onClick={()=>{setShowModal(false)}} />
+            <img src={close} alt="close" onClick={()=>{navigate('/dashboard/products')}} />
         </div>
 
         <div className='md:flex md:justify-between md:mt-8'>
             <img 
                 src={post.image.url} 
                 alt={post.title} 
-                onClick={()=>{setShowModal(false)}} 
                 className="z-30 w-[100px] md:w-[266px] object-cover"
             />
             <div className='md:ml-6 mt-4 md:mt-0 md:max-w-[214px]'>

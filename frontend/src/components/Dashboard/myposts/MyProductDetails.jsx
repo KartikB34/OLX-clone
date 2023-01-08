@@ -12,10 +12,12 @@ import { deletePost } from '../../../Actions/Post';
 import { getAllMyPosts } from '../../../Actions/User';
 import { toast } from 'react-toastify';
 import RequestList from './RequestList';
+import { useNavigate } from 'react-router-dom';
 
-const ProductDetails = ({post, setState}) => {
+const MyProductDetails = ({post}) => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [step, setStep] = useState(0);
   const {loading, message} = useSelector(state => state.myPosts)
@@ -24,7 +26,8 @@ const ProductDetails = ({post, setState}) => {
 
     dispatch(deletePost(post._id));
     dispatch(getAllMyPosts())
-    setState(0)
+    navigate("/dashboard/myposts")
+    
   }
 
   useEffect(()=>{
@@ -41,7 +44,7 @@ const ProductDetails = ({post, setState}) => {
   return (
       <div className='bg-white p-6'>
 
-        <div onClick={()=>{setState(0)}} className='flex text-2xl text-gray-500 hover:cursor-pointer items-center my-3'>
+        <div onClick={()=>{navigate("/dashboard/myposts")}} className='flex text-2xl text-gray-500 hover:cursor-pointer items-center my-3'>
             <BiArrowBack className='mr-2' /> back
         </div>
 
@@ -49,7 +52,6 @@ const ProductDetails = ({post, setState}) => {
             <img 
                 src={post.image.url} 
                 alt={post.title} 
-                onClick={()=>{setState(0)}} 
                 className="w-[100px] md:w-[266px] md:mr-16 object-cover"
             />
             <div className='md:ml-6 mt-4 md:mt-0'>
@@ -84,4 +86,4 @@ const ProductDetails = ({post, setState}) => {
   )
 }
 
-export default ProductDetails
+export default MyProductDetails
