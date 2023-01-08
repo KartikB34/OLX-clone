@@ -49,7 +49,7 @@ const Signup = () => {
   const handleSignup =async (e) => {
     e.preventDefault();
     await dispatch(registerUser(name,email,password,avatar))
-    navigate('/')
+    navigate('/dashboard/products')
   };
 
   const handlePassChange = (e) => {

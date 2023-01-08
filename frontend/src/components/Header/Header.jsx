@@ -27,7 +27,12 @@ const Header = ({sidebarOpen,setSidebarOpen}) => {
   const [ open, setOpen] = useState(false);
 
   const gotohome =()=>{
-    navigate("/");
+    if(isAuthenticated){
+      navigate("/dashboard/products")
+    }
+    else{
+      navigate("/");
+    }
   }
 
   const logout = async () => {

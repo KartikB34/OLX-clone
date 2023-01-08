@@ -35,7 +35,7 @@ const Login = () => {
   useEffect(()=>{
 
     if(isAuthenticated){
-      toast.success("Logout first")
+      // toast.success("Logout first")
       navigate("/dashboard/products")
     }
 
