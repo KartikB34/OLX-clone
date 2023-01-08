@@ -109,12 +109,12 @@ const Header = ({sidebarOpen,setSidebarOpen}) => {
                             <a href="/signup"><li className="mt-2 flex gap-2 border border-gray-400 rounded-md p-2 items-center hover:border-black hover:text-black cursor-pointer"><span>Sign up</span></li></a>
                         </div>
                     }
-                    {location.pathname==="/dashboard" ? <></> :
-                      <div onClick={toggle} className="hamburger w-7 ml-2 md:hidden cursor-pointer">
-                        <div className="w-full h-0.5 bg-gray-800 line rounded-md"></div>
-                        <div className="w-full h-0.5 bg-gray-800 my-1.5 rounded-md"></div>
-                        <div className="w-full h-0.5 bg-gray-800 rounded-md"></div>
-                     </div>
+                    {location.pathname==="/products" || location.pathname==="/" ? 
+                    <div onClick={toggle} className="hamburger w-7 ml-2 md:hidden cursor-pointer">
+                      <div className="w-full h-0.5 bg-gray-800 line rounded-md"></div>
+                      <div className="w-full h-0.5 bg-gray-800 my-1.5 rounded-md"></div>
+                      <div className="w-full h-0.5 bg-gray-800 rounded-md"></div>
+                    </div> : <></>
                     }
                 </div>
       </div>
